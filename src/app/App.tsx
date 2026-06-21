@@ -34,10 +34,7 @@ function App() {
   );
 }
 
-export default App;
-type Page = "home" | "auth" | "post" | "product" | "cart" | "checkout" | "invoice" | "bid" | "emergency" | "profile";
-type Condition = "new" | "used" | "rent";
-type SellerType = "shop" | "krishok" | "individual" | "online";
+
 
 interface Product {
   id: number; name: string; price: number; image: string;
