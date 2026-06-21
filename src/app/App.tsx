@@ -1,4 +1,5 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useCallback } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import {
   Search, Mic, Camera, ShoppingCart, Bell, User, Menu, X,
   Star, Shield, FileText, Truck, Package, Plus, Upload, Clock,
@@ -9,6 +10,31 @@ import {
 } from "lucide-react";
 import { toast, Toaster } from "sonner";
 
+// আপনার পেজ কম্পোনেন্টগুলো এখানে ইমপোর্ট হবে (নিচে উদাহরণস্বরূপ রাখা হয়েছে)
+// import PostDashboard from "./pages/PostDashboard";
+// import PaymentGate from "./pages/PaymentGate";
+
+function App() {
+  return (
+    <Router>
+      {/* Toaster পুরো অ্যাপে নোটিফিকেশন দেখানোর জন্য */}
+      <Toaster position="top-right" richColors />
+      
+      <div className="min-h-screen bg-gray-50">
+        <Routes>
+          {/* আপনার রুটগুলো এখানে ডিফাইন করুন */}
+          <Route path="/dashboard" element={<div>Post Dashboard Page</div>} />
+          <Route path="/payment/:postId" element={<div>Payment Gateway Page</div>} />
+          
+          {/* ডিফল্ট রাউট */}
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
 type Page = "home" | "auth" | "post" | "product" | "cart" | "checkout" | "invoice" | "bid" | "emergency" | "profile";
 type Condition = "new" | "used" | "rent";
 type SellerType = "shop" | "krishok" | "individual" | "online";
