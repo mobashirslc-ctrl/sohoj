@@ -25,6 +25,15 @@ const PostForm = () => {
       return;
     }
 
+   const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // বেসিক ভ্যালিডেশন
+    if (!formData.sellerType || !formData.name || !formData.price || !formData.paymentMethod) {
+      toast.error("অনুগ্রহ করে সব প্রয়োজনীয় তথ্য (*) পূরণ করুন!");
+      return;
+    }
+
     try {
       // Firebase-এ ডাটা পাঠানো
       await addDoc(collection(db, "products"), {
