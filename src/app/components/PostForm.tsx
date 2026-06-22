@@ -17,23 +17,27 @@ const PostForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // ভ্যালিডেশন
+    // ১. ভ্যালিডেশন
     if (!formData.sellerType || !formData.name || !formData.price || !formData.paymentMethod) {
       toast.error("অনুগ্রহ করে সব প্রয়োজনীয় তথ্য (*) পূরণ করুন!");
       return;
     }
 
+    // ২. প্রসেস শুরু হওয়ার অ্যালার্ট
+    alert("ডাটা সাবমিট হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...");
+
     try {
-      // Firebase-এ ডাটা পাঠানো
+      // ৩. ফায়ারবেসে ডাটা পাঠানো
       await addDoc(collection(db, "products"), {
         ...formData,
         status: "pending",
         createdAt: new Date(),
       });
       
+      alert("সফল! ডাটাবেসে ডাটা জমা হয়েছে।");
       toast.success("পোস্ট সফলভাবে জমা হয়েছে!");
 
-      // ফর্ম রিসেট করা
+      // ৪. ফর্ম রিসেট করা
       setFormData({
         sellerType: "",
         condition: "নতুন",
@@ -44,7 +48,8 @@ const PostForm = () => {
         paymentMethod: ""
       });
     } catch (error) {
-      console.error("Error adding document: ", error);
+      console.error("Firebase Error: ", error);
+      alert("ডাটা পাঠাতে সমস্যা হয়েছে! এরর: " + error);
       toast.error("পোস্ট করতে সমস্যা হয়েছে!");
     }
   };
