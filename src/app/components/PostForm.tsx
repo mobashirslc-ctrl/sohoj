@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { toast } from "sonner";
-// Firebase ইমপোর্ট
 import { db } from "../services/firebase"; 
 import { collection, addDoc } from "firebase/firestore";
 
@@ -15,20 +14,10 @@ const PostForm = () => {
     paymentMethod: ""
   });
 
-  // আপডেট করা handleSubmit ফাংশন
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // বেসিক ভ্যালিডেশন
-    if (!formData.sellerType || !formData.name || !formData.price || !formData.paymentMethod) {
-      toast.error("অনুগ্রহ করে সব প্রয়োজনীয় তথ্য (*) পূরণ করুন!");
-      return;
-    }
-
-   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // বেসিক ভ্যালিডেশন
+    // ভ্যালিডেশন
     if (!formData.sellerType || !formData.name || !formData.price || !formData.paymentMethod) {
       toast.error("অনুগ্রহ করে সব প্রয়োজনীয় তথ্য (*) পূরণ করুন!");
       return;
@@ -90,7 +79,6 @@ const PostForm = () => {
         </div>
       </div>
 
-      {/* অন্যান্য ফিল্ডস */}
       <input className="w-full p-2 border mb-4 rounded" placeholder="পণ্যের নাম *" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} />
       <textarea className="w-full p-2 border mb-4 rounded h-24" placeholder="বিবরণ" value={formData.description} onChange={(e) => setFormData({...formData, description: e.target.value})} />
       <input className="w-full p-2 border mb-4 rounded" type="number" placeholder="মূল্য (৳) *" value={formData.price} onChange={(e) => setFormData({...formData, price: e.target.value})} />
