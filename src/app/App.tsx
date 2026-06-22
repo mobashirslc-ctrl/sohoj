@@ -16,34 +16,7 @@ import { toast, Toaster } from "sonner";
 import PostForm from "./components/PostForm";
 import PostDashboard from "./components/PostDashboard";
 
-export default function App() {
-  return (
-    <div className="min-h-screen bg-gray-50 p-4">
-      {/* টোস্ট নোটিফিকেশন সিস্টেম সক্রিয় করা */}
-      <Toaster position="top-right" richColors />
-      
-      <header className="mb-8 p-4 bg-white shadow-sm rounded-lg flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-green-700 flex items-center gap-2">
-          <Zap className="text-yellow-500" /> সহজ (SOHOJ)
-        </h1>
-        {/* এখানে আপনি মেনু বা ইউজার আইকন রাখতে পারেন */}
-        <button className="p-2 bg-gray-100 rounded-full"><User size={20}/></button>
-      </header>
 
-      <main className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* ফর্ম সেকশন */}
-        <section>
-          <PostForm />
-        </section>
-        
-        {/* ড্যাশবোর্ড সেকশন */}
-        <section>
-          <PostDashboard />
-        </section>
-      </main>
-    </div>
-  );
-}
 type Page = "home" | "auth" | "post" | "product" | "cart" | "checkout" | "invoice" | "bid" | "emergency" | "profile";
 type Condition = "new" | "used" | "rent";
 type SellerType = "shop" | "krishok" | "individual" | "online" | "student";
